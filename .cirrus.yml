@@ -1,0 +1,17 @@
+env:
+    CIRRUS_WORKING_DIR: "/tmp/ci" # Where files download
+    GITHUB_TOKEN: "ENCRYPTED[!f3ae6ad5ae36a6b831b02d536693a02ebcc6d79c26431169f8f14968a1078097c08ceb544e5d5cdf67913b8b514d0c4b!]"
+
+task:
+    name: pd_media
+    timeout_in: 120m
+    container:
+      dockerfile: nexgang
+      cpu: 8
+      memory: 32G
+      stateful: true
+      greedy: true
+    clone_script:
+      - git clone https://$GITHUB_TOKEN@github.com/Prashant-1695/bulk_down.git .
+    upload_script:
+      - bash up_zip.sh
